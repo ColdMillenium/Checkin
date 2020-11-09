@@ -1,26 +1,26 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Main from './Main'
+import AppStore from './models/AppStore';
+
+import {StoreProvider, createStore} from 'easy-peasy'
+
+const store = createStore(AppStore);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          This is my first change.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider store = {store}>
+      <Main></Main>
+    </StoreProvider>
   );
+}
+function Display(){ 
+  return (
+    <div> 
+      <p> I'm going test it all yo</p>
+    </div>
+  )
 }
 
 export default App;

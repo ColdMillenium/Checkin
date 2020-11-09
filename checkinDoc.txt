@@ -1,0 +1,182 @@
+/*-------------------------- REACT STATE ----------------------------/
+checkin.io:{
+    state-model:{
+        model:{
+            user:{
+                userid
+                todo-list:{
+                    ...
+                }
+                projects:[
+                    project1:{
+                       ...
+                    }
+                ]
+            }
+            
+        }
+    }
+    app.js:{
+        uses state-model,
+
+    }
+}
+/*-------------------------- DATA ----------------------------/
+user:{
+    id: uuid,
+    userName:
+    email:
+    password:
+    friends: //array of user types
+    groups: //array of group types
+    todo-list [], //array of todo type
+    project-list[], //array of project type
+    profile-pic: 
+
+
+}
+project: {
+    color: 
+    id: uuid string,
+    todo-list: [], //array of todo type
+    sections: [], // array of section type
+}
+section:{
+    id: uuid string,
+    name: string,
+    todo-list:[], //array of todo type
+}
+todo:{
+    id: uuid string,
+    projects: [] , //aray of project type
+    name: string,
+    desc: string,
+    due-date: //date type? or string
+    subtasks: [], //array of todo type
+    completed: boolean,
+}
+
+/*-------------------------- API CALLS ----------------------------/
+    user:{
+        signIn(data){
+            //REQUIRES username 
+            //REQUIRES password
+            //json.success = true if it works, false otherwise
+            //json.error = string describing error
+                'incorrect password', 'invalid username', 
+        }
+        signOut(){
+            
+        }
+        createUser(data){
+            // will check usernames against existing users to make sure it's unique and then creates a user
+            //REQUIRES username 
+            //REQUIRES password
+
+            //returns data
+        }
+        deleteUser(id){
+            //REQURES the user ID
+
+           //json.success = true if it works, false otherwise
+        //json.error = string describing error
+        }
+    }
+    Section:{
+        addSection(data, userid){
+            // data contains section data
+            //creates section using the data.
+            //returns json
+            //json.success = true if it works, false otherwise
+            //json.error = string describing error
+                //name is REQUIRED
+                //if fields other than name are missing, it does not create those fields
+            "permission denied?"
+        }
+        updateSection(data, userid){
+            // data contains section data
+            //updates section using id and the data.
+            //returns json
+            //json.success = true if it works, false otherwise
+            //json.error = string describing error
+                //ID is REQUIRED, 
+                //if fields other than id are missing, it does not update those fields
+            "missing id", "id doesnt exist", "permission denied?"
+        }
+        deleteSection(data, userid){
+            // data contains section id
+            //deletes section using the id.
+            //returns json
+            //json.success = true if it works, false otherwise
+            //json.error = string describing error
+                //id is REQUIRED
+            "permission denied?", "Missing id"
+        }
+    }
+
+    Todo:{
+        addTodo(data, userid){
+            //data contains object with the todo information
+            //returns json
+            //json.data should have the id of the todo
+            //json.success = true if it works, false otherwise
+                //ID is REQUIRED
+                //NAME is REQUIRED/CANNOT BE NULL 
+            //if fields other than id are and name missing, it does not update those fields
+                "permission denied?"
+        }
+        updateTodo(data, userid){
+            //data contains object with the todo information
+            //returns json
+            //json.success = true if it works, false otherwise
+                //ID IS REQUIRED
+                //NAME cannot be null or empty
+            //if fields other than id are missing, it does not update those fields
+            "missing id",  "id doesnt exist", "permission denied?"
+        }
+        deleteTodo(data, userid){
+            //data just needs the id really
+            //returns json
+            //json.success = true if it works, false otherwise
+                //ID IS REQUIRED
+            "missing id", "id doesnt exist", "permission denied?"
+        }
+    }
+
+    Project{
+        updateProject(data, userid){
+            //data contains object with the project information
+            //updates section using id and the data.
+            //returns json
+            //json.success = true if it works, false otherwise
+                //ID IS REQUIRED
+                //NAME CANNOT BE NULL or empty
+            //if fields other than id are missing, it does not update those fields
+            "missing id", "id doesnt exist", "permission denied?"
+        }
+        deleteProject(data, userid){
+            //data contains object with the id
+            //returns json
+            //json.success = true if it works, false otherwise
+                //ID IS REQUIRED
+            //if fields other than id and name,are missing, it does not update those fields
+            "missing id", "missing name", "id doesnt exist", "permission denied?"
+        }
+        addProject(data, userid){
+            //data just needs the id really
+            //returns json
+            //json.success = true if it works, false otherwise
+                //ID IS REQUIRED
+                //NAME CANNOT BE NULL or empty
+            "missing id", "id doesnt exist", "permission denied?"
+        }
+    }
+    All{
+        getAll(userid){
+            //returns json with all app data
+            //USER ID is required
+        }
+    }
+
+
+
