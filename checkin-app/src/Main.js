@@ -16,17 +16,17 @@ export default function Main() {
           <Redirect from="/" to="/Account"></Redirect>
         </Route>
         <Route path="/Account"><Account></Account></Route>
-        {/* <Route path="/app">{
+        <Route path="/app">{
             ()=>{
                 if(authenticated){
                     return <TodoList></TodoList>
                 }else{
                     return(
-                        <Redirect from="/app" to="/SignIn"></Redirect>
+                        <Redirect from="/app" to="/Account"></Redirect>
                     )
                 }
             }
-        }</Route> */}
+        }</Route>
       </Switch>
     </Router>
     </div>);

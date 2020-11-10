@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {useStoreState, useStoreActions} from 'easy-peasy'
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
+import Todo from './Todo'
 
 
 
@@ -24,7 +25,7 @@ export default function TodoList() {
     return (
         <div>
             {todos.map((todo, index) => (
-                <div key={todo._id}>{todo.name}</div>
+                <div key={todo._id}><Todo data={todo}></Todo></div>
             ))}
             <AddTodo></AddTodo>
         </div>
