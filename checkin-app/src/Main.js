@@ -4,7 +4,6 @@ import {useStoreState, useStoreActions} from 'easy-peasy'
 import Account from './account/Account'
 import TodoList from './checkin/TodoList'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
-import {Demo} from './common/ClickOutide'
 
 export default function Main() {
     const authenticated = useStoreState((state) => state.authenticated);
@@ -30,7 +29,6 @@ export default function Main() {
         }</Route>
       </Switch>
     </Router>
-    <Demo></Demo>
     </div>);
 }
 
