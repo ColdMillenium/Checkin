@@ -59,7 +59,7 @@ export default function Todo(props) {
                 </div>
                 )
         }else{
-            return <div>UNSELECTED: {data.name}</div>
+            return <div>{data.name}</div>
         }
     }
 

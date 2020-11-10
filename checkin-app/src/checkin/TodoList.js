@@ -33,21 +33,16 @@ export default function TodoList() {
     }
     return (
         <div>
-            <>
-            <ClickOutside onClick={() => selectTodo("From click outside")}>
-                <div>{
-                    todos.map((todo, index) => {
-                        //check whether this todo is slected or not
-                        const isSelected = (selectedId === todo._id);
-                        return (  
-                                <Todo key={todo._id} selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
-                        )
-                    })
-                }</div>
-            </ClickOutside>
-            </>
-            
             <AddTodo></AddTodo>
+            <div>{
+                todos.map((todo, index) => {
+                    //check whether this todo is slected or not
+                    const isSelected = (selectedId === todo._id);
+                    return (  
+                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
+                    )
+                })
+            }</div>
         </div>
     )
 }
