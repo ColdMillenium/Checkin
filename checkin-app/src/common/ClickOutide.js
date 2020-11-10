@@ -29,9 +29,14 @@ export const Demo = () => {
   return (
     <>
       <ClickOutside onClick={() => setOutsideCount((count) => count + 1)}>
-        <button onClick={() => setInsideCount((count) => count + 1)}>
-          Click inside
-        </button>
+          <div>
+            <button onClick={() => setInsideCount((count) => count + 1)}>
+            Click inside
+            </button>
+            <button onClick={() => setInsideCount((count) => count + 1)}>
+            Click inside
+            </button>
+          </div>
       </ClickOutside>
       <hr />
       <p>Inside clicks count: {insideCount}</p>

@@ -3,6 +3,7 @@ import {useStoreState, useStoreActions} from 'easy-peasy'
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import Todo from './Todo'
+import ClickOutside from '../common/ClickOutide';
 
 
 
@@ -24,22 +25,28 @@ export default function TodoList() {
             })
     }, [])
     function selectTodo(id){
+        console.log(id);
         if(id != selectedId){
             setSelectedId(id)
+            console.log("id change to " + id);
         }
     }
     return (
         <div>
-            {todos.map((todo, index) => {
-                //check whether this todo is slected or not
-                const isSelected = (selectedId === todo._id);
-                return (
-                    <div key={todo._id}>
-                        <Todo selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
-                    </div>
-                )
-            }
-            )}
+            <>
+            <ClickOutside onClick={() => selectTodo("From click outside")}>
+                <div>{
+                    todos.map((todo, index) => {
+                        //check whether this todo is slected or not
+                        const isSelected = (selectedId === todo._id);
+                        return (  
+                                <Todo key={todo._id} selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
+                        )
+                    })
+                }</div>
+            </ClickOutside>
+            </>
+            
             <AddTodo></AddTodo>
         </div>
     )
