@@ -1,15 +1,21 @@
 import React, {useState} from 'react'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import {ReactComponent as DeleteIcon} from '../icons/delete.svg'
 
 
 const useStyles = makeStyles({
     root: {
       maxWidth: 275,
+      minWidth: 250,
       marginTop: 10,
       marginBottom:10,
+    },
+    text:{
+        alignConent: "center"
     },
     bullet: {
       display: 'inline-block',
@@ -30,7 +36,14 @@ export default function Todo(props) {
 
     function Content(){
         if(selected){
-            return (<div>{data.name}</div>)
+            return (
+                <div>
+                    <p>{data.name}</p>
+                    <DeleteIcon/>
+                  
+                   
+                </div>
+                )
         }else{
             return <div>UNSELECTED: {data.name}</div>
         }
@@ -38,7 +51,7 @@ export default function Todo(props) {
 
     return(
         <Card onClick={()=>{setSelected(!selected)}}className={classes.root}>
-            <CardContent>
+            <CardContent className={classes.text}>
                 {Content()}
             </CardContent>
         </Card>   
