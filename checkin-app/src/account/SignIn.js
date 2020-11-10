@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
+import {Link} from "react-router-dom";
 
 
 export default function SignIn(props){
@@ -68,6 +69,8 @@ export default function SignIn(props){
         <p>{usernameError}</p>
         <p>{passwordError}</p>
         <Button variant="contained" onClick={() => onClickSignIn()} color="primary">Sign In</Button>
-        <Button variant="contained" onClick={() => props.goToSignUp()} color="primary">Make an account</Button>
+        <Button component={Link} to="/SignUp" variant="contained" color="primary">Make an account</Button>
+    
+       
     </div>)
 }
