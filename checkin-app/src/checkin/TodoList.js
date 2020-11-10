@@ -12,8 +12,8 @@ export default function TodoList() {
     const state = useStoreState((state) => state);
     const getTodos = useStoreActions((actions) => actions.getTodos);
     const setTodos = useStoreActions((actions) => actions.setTodos)
-    const selectedId = useState(null);
-    console.log(state);
+    const [selectedId, setSelectedId] = useState(null);
+
     useEffect(()=>{
         getTodos(aToken)
             .then((res)=>{
@@ -23,6 +23,11 @@ export default function TodoList() {
                 console.log(err);
             })
     }, [])
+    function selectTodo(id){
+        if(id != selectedId){
+            setSelectedId(id)
+        }
+    }
     return (
         <div>
             {todos.map((todo, index) => {
@@ -30,7 +35,7 @@ export default function TodoList() {
                 const isSelected = (selectedId === todo._id);
                 return (
                     <div key={todo._id}>
-                        <Todo isSelected={isSelected} data={todo}></Todo>
+                        <Todo selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
                     </div>
                 )
             }

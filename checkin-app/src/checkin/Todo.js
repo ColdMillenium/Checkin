@@ -32,7 +32,8 @@ const useStyles = makeStyles({
 export default function Todo(props) {
     const classes = useStyles();
     const data = props.data;
-    const [selected, setSelected] = useState(false)
+    const selected = props.isSelected;
+    const selectTodo = props.selectTodo;
 
     function Content(){
         if(selected){
@@ -50,7 +51,7 @@ export default function Todo(props) {
     }
 
     return(
-        <Card onClick={()=>{setSelected(!selected)}}className={classes.root}>
+        <Card onClick={selectTodo} className={classes.root}>
             <CardContent className={classes.text}>
                 {Content()}
             </CardContent>
