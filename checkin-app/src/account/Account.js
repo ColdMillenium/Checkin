@@ -13,7 +13,6 @@ export default function Account() {
                 </Route>
                 <Route path="/Account/SignIn"><SignIn></SignIn></Route>
                 <Route path="/Account/SignUp"><SignUp></SignUp></Route>
-
             </div>
            
      
