@@ -14,6 +14,13 @@ const useStyles = makeStyles({
       marginTop: 10,
       marginBottom:10,
     },
+    rootSelected: {
+        maxWidth: 275,
+        minWidth: 250,
+        marginTop: 10,
+        marginBottom:10,
+        backgroundColor: "#cee6ea"
+    },
     text:{
         alignConent: "center"
     },
@@ -34,7 +41,13 @@ export default function Todo(props) {
     const data = props.data;
     const selected = props.isSelected;
     const selectTodo = props.selectTodo;
-
+    function style(){
+        if(selected){
+            return classes.rootSelected;
+        }else{
+            return classes.root;
+        }
+    }
     function Content(){
         if(selected){
             return (
@@ -51,7 +64,7 @@ export default function Todo(props) {
     }
 
     return(
-        <Card onClick={selectTodo} className={classes.root}>
+        <Card onClick={selectTodo} className={style()}>
             <CardContent className={classes.text}>
                 {Content()}
             </CardContent>
