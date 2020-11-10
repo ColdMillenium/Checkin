@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
 import {Link, useHistory} from 'react-router-dom'
+import { motion } from "framer-motion";
 
 export default function SignUp(props){
     const [username, setUsername] = useState('');
@@ -11,7 +12,7 @@ export default function SignUp(props){
     const [password, setPassword] = useState('');
     const registerUser = useStoreActions((actions) => actions.registerUser);
     const history = useHistory();
-
+    
  
 
     function handleSubmit(e){
@@ -57,8 +58,12 @@ export default function SignUp(props){
             console.log(err);
         })
     );
+    function SuperButton(){
+        return(<Button> variant="contained" onClick={() => onSignUpClick()} color="primary">Sign Up</Button>)
+    }
     return (
         <div>
+            <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>Sign Up</motion.h2>
             <form  noValidate autoComplete="off">
                 <ul>
                     <li>
@@ -77,3 +82,5 @@ export default function SignUp(props){
         </div>
     )
     }
+
+    

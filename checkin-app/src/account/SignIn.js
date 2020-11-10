@@ -66,7 +66,7 @@ export default function SignIn(props){
 
 
     return (<div>
-        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring" }}>Sign In</motion.h2>
+        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>Sign In</motion.h2>
         <form onSubmit={()=>onClickSignIn()} noValidate autoComplete="off">
             <ul>
                 <li>
