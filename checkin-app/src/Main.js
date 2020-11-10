@@ -3,8 +3,8 @@ import { Button } from '@material-ui/core';
 import {useStoreState, useStoreActions} from 'easy-peasy'
 
 
-import Auth from './comps/Auth'
-import TodoList from './comps/TodoList'
+import Account from './account/Account'
+import TodoList from './checkin/TodoList'
 
 export default function Main() {
     const setPage = useStoreActions((actions) => actions.setPage);
@@ -26,7 +26,7 @@ function Show(props){
     }
 
     if(page === "AUTH"){
-        return <Auth></Auth>
+        return <Account></Account>
     }else if(page === "TODOLIST"){
         return <TodoList></TodoList>
     }else{
