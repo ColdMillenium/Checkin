@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState} from 'react'
 import {useStoreState, useStoreActions} from 'easy-peasy'
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -12,6 +12,7 @@ export default function TodoList() {
     const state = useStoreState((state) => state);
     const getTodos = useStoreActions((actions) => actions.getTodos);
     const setTodos = useStoreActions((actions) => actions.setTodos)
+    const selectedId = useState(null);
     console.log(state);
     useEffect(()=>{
         getTodos(aToken)
@@ -24,9 +25,16 @@ export default function TodoList() {
     }, [])
     return (
         <div>
-            {todos.map((todo, index) => (
-                <div key={todo._id}><Todo data={todo}></Todo></div>
-            ))}
+            {todos.map((todo, index) => {
+                //check whether this todo is slected or not
+                const isSelected = (selectedId === todo._id);
+                return (
+                    <div key={todo._id}>
+                        <Todo isSelected={isSelected} data={todo}></Todo>
+                    </div>
+                )
+            }
+            )}
             <AddTodo></AddTodo>
         </div>
     )
