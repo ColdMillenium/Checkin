@@ -3,14 +3,14 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 export default function SignUp(props){
- 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const registerUser = useStoreActions((actions) => actions.registerUser);
+    const history = useHistory();
 
  
 
@@ -36,7 +36,9 @@ export default function SignUp(props){
             setPassword(e.target.value);
         }
     }
-
+    function goToSignIn(){
+        history.push("/Account/SignIn");
+    }
     const onSignUpClick = useCallback(
         ()=>registerUser({
             "username": username,
@@ -46,6 +48,7 @@ export default function SignUp(props){
         .then((res)=>{
             if(res.status === "success"){
                 console.log("YAAAY");
+                goToSignIn();
             }else{
                 console.log(res);
             }
@@ -70,7 +73,7 @@ export default function SignUp(props){
                 </ul>
             </form>
             <Button variant="contained" onClick={() => onSignUpClick()} color="primary">Sign Up</Button>
-            <Button component={Link} to="/SignIn" variant="contained"  color="primary">Back to Sign In</Button>
+            <Button onClick={goToSignIn} variant="contained"  color="primary">Back to Sign In</Button>
         </div>
     )
     }

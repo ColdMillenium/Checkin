@@ -1,44 +1,34 @@
 import React from 'react'
 import { Button } from '@material-ui/core';
 import {useStoreState, useStoreActions} from 'easy-peasy'
-
-
 import Account from './account/Account'
 import TodoList from './checkin/TodoList'
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 export default function Main() {
-    const setPage = useStoreActions((actions) => actions.setPage);
+    const authenticated = useStoreState((state) => state.authenticated);
     
     return (<div>
      
-       <Show></Show>
+     <Router>
+      <Switch>
+        <Route exact path="/">
+          <Redirect from="/" to="/Account"></Redirect>
+        </Route>
+        <Route path="/Account"><Account></Account></Route>
+        {/* <Route path="/app">{
+            ()=>{
+                if(authenticated){
+                    return <TodoList></TodoList>
+                }else{
+                    return(
+                        <Redirect from="/app" to="/SignIn"></Redirect>
+                    )
+                }
+            }
+        }</Route> */}
+      </Switch>
+    </Router>
     </div>);
 }
 
-function Show(props){
-    const page = useStoreState((state) => state.page);
-    const authenticated = useStoreState((state)=> state.authenticated);
-    const setPage = useStoreActions((actions) => actions.setPage);
-    
-    //User needs to login or sign up if they're not authenticated.
-    if(!authenticated && page != "AUTH"){
-        setPage("AUTH");
-    }
-
-    if(page === "AUTH"){
-        return <Account></Account>
-    }else if(page === "TODOLIST"){
-        return <TodoList></TodoList>
-    }else{
-        return <div>{page} page wasn't found</div>
-    }
-    
-}
-function PageChanger(props){
-    const pages = ["LOGIN", "AUTH", "TODOLIST"];
-    const setPage = useStoreActions((actions) => actions.setPage);
-    const button_list = pages.map((page, index) =>
-        <Button variant="contained" color="primary" key={page} onClick={(e) => setPage(page)}>{page}</Button>
-    );
-    return <div>{button_list}</div>
-}

@@ -7,15 +7,16 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 export default function Account() {
 
     return (
-    <Router>
-        <Switch>
-            <Route exact path="/">
-                <Redirect from="/" to="/SignIn"></Redirect>
-            </Route>
-            <Route path="/SignIn"><SignIn></SignIn></Route>
-            <Route path="/SignUp"><SignUp></SignUp></Route>
-        </Switch>
-    </Router>
+            <div>
+                <Route exact path="/Account">
+                    <Redirect from="/" to="Account/SignIn"></Redirect>
+                </Route>
+                <Route path="/Account/SignIn"><SignIn></SignIn></Route>
+                <Route path="/Account/SignUp"><SignUp></SignUp></Route>
+
+            </div>
+           
+     
     )
     // if(page === 'SIGN UP'){
     //     return (
