@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
 import {Link, useHistory} from "react-router-dom";
-
+import {motion} from 'framer-motion'
 
 export default function SignIn(props){
     const [username, setUsername] = useState('');
@@ -63,7 +63,10 @@ export default function SignIn(props){
             onClickSignIn();
         }
     }
+
+
     return (<div>
+        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring" }}>Sign In</motion.h2>
         <form onSubmit={()=>onClickSignIn()} noValidate autoComplete="off">
             <ul>
                 <li>
@@ -79,6 +82,5 @@ export default function SignIn(props){
         <Button variant="contained" onClick={() => onClickSignIn()} color="primary">Sign In</Button>
         <Button onClick={goToSignUp} variant="contained" color="primary">Make an account</Button>
     
-       
     </div>)
 }
