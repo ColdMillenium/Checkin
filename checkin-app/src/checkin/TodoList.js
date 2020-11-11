@@ -20,10 +20,11 @@ export default function TodoList() {
     //STORE
     const todos = useStoreState((state) => state.todos);
     const aToken = useStoreState((state) => state.aToken);
-    const state = useStoreState((state) => state);
+
     const getTodos = useStoreActions((actions) => actions.getTodos);
     const setTodos = useStoreActions((actions) => actions.setTodos);
     const updateTodo = useStoreActions((actions) => actions.updateTodo);
+    const deleteTodo = useStoreActions((actions) => actions.deleteTodo);
 
     //LOCAL
     const [selectedId, setSelectedId] = useState(null);
