@@ -84,7 +84,7 @@ export default function TodoList() {
 
         //Delete from database
         deleteTodo({
-            todo: aToken,
+            token: aToken,
             data:{
                 _id: id
             }
