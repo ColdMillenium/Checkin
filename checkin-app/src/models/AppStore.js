@@ -58,6 +58,29 @@ export default {
             })
         })
     }),
+    updateTodo: thunk( (actions, payload)=> {
+        return new Promise((resolve, reject)=>{
+            console.log("about to update Todo");
+            console.log(payload);
+            return fetch(`${AppServer}/updateTodo`, { 
+                // Adding method type 
+                method: "POST", 
+                mode: "cors",
+                body: JSON.stringify(payload.data), 
+                
+                // Adding headers to the request 
+                headers: { 
+                    "Accept": "application/json",
+                    "Content-Type": "application/json;charset=UTF-8",
+                    'Authorization': 'Bearer ' + payload.token
+                }  
+            }).then((res)=>{
+                console.log(res);
+                console.log("finished updating todo");
+                resolve(res.json());
+            })
+        })
+    }),
 
     registerUser: thunk( (actions, payload)=> {
         return new Promise((resolve, reject)=>{
