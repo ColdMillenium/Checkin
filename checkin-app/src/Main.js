@@ -30,7 +30,7 @@ export default function Main() {
         }</Route>
       </Switch>
     </Router>
-    <Demo></Demo>
+    <hr />
     </div>);
 }
 
