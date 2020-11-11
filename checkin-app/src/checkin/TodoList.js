@@ -1,11 +1,20 @@
 import React, { useEffect, useState} from 'react'
 import {useStoreState, useStoreActions} from 'easy-peasy'
 import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 import Todo from './Todo'
-import ClickOutside from '../common/ClickOutide';
+import EditTodoDrawer from './EditTodoDrawer';
 
 
+const useStyles = makeStyles({
+    list: {
+      width: 250,
+    },
+    fullList: {
+      width: 'auto',
+    },
+  });
 
 export default function TodoList() {
     const todos = useStoreState((state) => state.todos);
@@ -14,6 +23,8 @@ export default function TodoList() {
     const getTodos = useStoreActions((actions) => actions.getTodos);
     const setTodos = useStoreActions((actions) => actions.setTodos)
     const [selectedId, setSelectedId] = useState(null);
+    const [editOpen, setEditOpen] = useState(false);
+    const [editData, setEditData] = useState(null);
 
     useEffect(()=>{
         getTodos(aToken)
@@ -24,23 +35,37 @@ export default function TodoList() {
                 console.log(err);
             })
     }, [])
-    function selectTodo(id){
-        console.log(id);
-        if(id != selectedId){
-            setSelectedId(id)
-            console.log("id change to " + id);
+    function selectTodo(todo){
+        console.log(todo._id);
+        if(todo._id != selectedId){
+            setSelectedId(todo._id);
+            setEditData(todo);
+            setEditOpen(true);
+            console.log("id change to " + todo._id);
         }
+    }
+    function closeEdit(){
+        setEditOpen(false);
+        setSelectedId(null);
     }
     return (
         <div>
+            <EditTodoDrawer data={editData} setData={setEditData} anchor="right" open={editOpen} onClose={closeEdit}></EditTodoDrawer>
             <AddTodo></AddTodo>
             <div>{
                 todos.map((todo, index) => {
                     //check whether this todo is slected or not
                     const isSelected = (selectedId === todo._id);
-                    return (  
-                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo._id)} isSelected={isSelected} data={todo}></Todo>
-                    )
+                    if(isSelected){
+                        return (  
+                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={editData}></Todo>
+                        )
+                    }else{
+                        return (  
+                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={todo}></Todo>
+                        )
+                    }
+                    
                 })
             }</div>
         </div>
