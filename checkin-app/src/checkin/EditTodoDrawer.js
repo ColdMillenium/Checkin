@@ -18,12 +18,13 @@ export default function EditTodoDrawer(props) {
     const name = props.data.name;
     const open = props.open;
     const onClose = props.onClose;
+    const onDelete = props.onDelete;
     
     function handleNameChange(e){
         props.setData({...props.data, name: e.target.value});
     }
 
-    function handleSaveTodo(){
+    function onSave(){
         onClose();
     }
     
@@ -31,7 +32,8 @@ export default function EditTodoDrawer(props) {
     return (
         <Drawer classes={{paper: classes.drawerPaper}}style={{ width: '40%'}} anchor="right" open={open} onClose={onClose}>
                <TextField value={name} onChange= {handleNameChange} id="standard-basic" label="Edit Todo" />
-               <Button variant="contained" onClick={handleSaveTodo} color="primary">Save Todo</Button>
+               <Button variant="contained" onClick={onSave} color="primary">Save Todo</Button>
+               <Button variant="contained" onClick={onDelete} color="secondary">Save Todo</Button>
         </Drawer>
     )
 }
