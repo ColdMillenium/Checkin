@@ -77,9 +77,37 @@ export default function TodoList() {
             })
         }
     }
+    function handleDelete(id){
+        //close Edit Drawer
+        setEditOpen(false);
+        setSelectedId(null);
+
+        //Delete from database
+        deleteTodo({
+            todo: aToken,
+            data:{
+                _id: id
+            }
+        })
+        .then((res)=>{
+            console.log(res);
+            refreshList();
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    }
+   
     return (
         <div>
-            <EditTodoDrawer data={editData} setData={setEditData} anchor="right" open={editOpen} onClose={closeEdit}></EditTodoDrawer>
+            <EditTodoDrawer 
+                data={editData} 
+                setData={setEditData} 
+                anchor="right" 
+                open={editOpen} 
+                onClose={closeEdit}
+                onDelete={handleDelete}
+            />
             <AddTodo></AddTodo>
             <div>{
                 todos.map((todo, index) => {
