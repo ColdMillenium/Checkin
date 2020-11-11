@@ -17,16 +17,36 @@ const useStyles = makeStyles({
   });
 
 export default function TodoList() {
+    //STORE
     const todos = useStoreState((state) => state.todos);
     const aToken = useStoreState((state) => state.aToken);
     const state = useStoreState((state) => state);
     const getTodos = useStoreActions((actions) => actions.getTodos);
-    const setTodos = useStoreActions((actions) => actions.setTodos)
+    const setTodos = useStoreActions((actions) => actions.setTodos);
+    const updateTodo = useStoreActions((actions) => actions.updateTodo);
+
+    //LOCAL
     const [selectedId, setSelectedId] = useState(null);
     const [editOpen, setEditOpen] = useState(false);
-    const [editData, setEditData] = useState(null);
-
+    const [origData, setOrigData] = useState(null); // this is the starting todo data from database
+    const [editData, setEditData] = useState(null); // this is data modified by the client
+    //When a Todo is selected, It will will use editData, which will equal data from the database
+    // After if a Todo is edited, editData will not equal origData and therefore must update the database
+    
     useEffect(()=>{
+        refreshList();
+    }, [])
+    function selectTodo(todo){
+        console.log(todo._id);
+        if(todo._id != selectedId){
+            setSelectedId(todo._id);
+            setOrigData(todo); //copy of original
+            setEditData(todo); // copy that can be modified by client
+            setEditOpen(true);
+            console.log("id change to " + todo._id);
+        }
+    }
+    function refreshList(){
         getTodos(aToken)
             .then((res)=>{
                setTodos(res.data);
@@ -34,19 +54,27 @@ export default function TodoList() {
             .catch((err)=>{
                 console.log(err);
             })
-    }, [])
-    function selectTodo(todo){
-        console.log(todo._id);
-        if(todo._id != selectedId){
-            setSelectedId(todo._id);
-            setEditData(todo);
-            setEditOpen(true);
-            console.log("id change to " + todo._id);
-        }
     }
     function closeEdit(){
         setEditOpen(false);
         setSelectedId(null);
+        if(JSON.stringify(origData) != JSON.stringify(editData)){
+            updateTodo({
+                token: aToken,
+                data:{
+                    name: editData.name,
+                    completed: editData.completed,
+                    _id: editData._id,
+                } 
+            })
+            .then((res)=>{
+                console.log(res);
+                refreshList();
+            })
+            .catch((err)=>{
+                console.error(err);
+            })
+        }
     }
     return (
         <div>
