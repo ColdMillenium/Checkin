@@ -1,17 +1,15 @@
 import Drawer from '@material-ui/core/Drawer';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import React, { useEffect, useState} from 'react'
 
 
-const useStyles = makeStyles({
-    list: {
-      width: 250,
-    },
-    fullList: {
-      width: 'auto',
-    },
-  });
+const useStyles = makeStyles( {
+    drawerPaper: {
+      width: 'inherit'
+    }
+});
 export default function EditTodoDrawer(props) {
+    const classes = useStyles();
     if(props.data ===null){
         return <div>No Data</div>
     }
@@ -21,8 +19,10 @@ export default function EditTodoDrawer(props) {
     
     
     return (
-        <Drawer anchor="right" open={open} onClose={onClose}>
-               <p>{name}</p>
+        <Drawer classes={{paper: classes.drawerPaper}}style={{ width: '220px'}} anchor="right" open={open} onClose={onClose}>
+               <div style={classes.root}>
+                   {name}
+                </div>
         </Drawer>
     )
 }
