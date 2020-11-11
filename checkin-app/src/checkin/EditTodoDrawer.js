@@ -24,7 +24,7 @@ export default function EditTodoDrawer(props) {
     }
 
     function handleSaveTodo(){
-        console.log('saving Todo edits');
+        onClose();
     }
     
     
