@@ -7,12 +7,12 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
 
 const arriveLeft = {
-    hidden: { x: "-100vw" },
-    visible: { x: "0vw", transition: { duration: 0.5 } }
+    hidden: { x: "-10vw", opacity: 0},
+    visible: { x: "0vw", opacity:1, transition: { ease: "easeIn", duration: 0.7 } }
   };
   const arriveRight = {
-    hidden: { x: "100vw" },
-    visible: { x: "0vw", transition: { duration: 0.5 } }
+    hidden: { x: "40vw", opacity: 0},
+    visible: { x: "0vw", opacity:1, transition: { ease: "easeIn", duration: 0.7 } }
   };
 export default function Account() {
     const history = useHistory();
