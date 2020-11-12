@@ -77,6 +77,23 @@ export default function TodoList() {
             })
         }
     }
+    function handleChange(data){
+        updateTodo({
+            token: aToken,
+            data:{
+                name: data.name,
+                completed: data.completed,
+                _id: data._id,
+            } 
+        })
+        .then((res)=>{
+            console.log(res);
+            refreshList();
+        })
+        .catch((err)=>{
+            console.error(err);
+        })
+    }
     function handleDelete(id){
         //close Edit Drawer
         setEditOpen(false);
