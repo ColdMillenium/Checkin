@@ -3,6 +3,7 @@ import SignUp from './SignUp'
 import SignIn from './SignIn'
 import {BrowserRouter as Router, Switch, Route, Redirect, useHistory} from 'react-router-dom';
 import { motion } from "framer-motion"
+import Typography from '@material-ui/core/Typography';
 
 const arriveLeft = {
     hidden: { x: "-100vw" },
@@ -16,6 +17,9 @@ export default function Account() {
     const history = useHistory();
     return (
             <div>
+                <Typography variant="h2">
+                        Welcome to Checkin!
+                </Typography>
                 <Route exact path="/Account">
                     <Redirect from="/" to="Account/SignIn"></Redirect>
                 </Route>

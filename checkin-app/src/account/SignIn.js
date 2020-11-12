@@ -1,11 +1,13 @@
 
 import React, {useState, useCallback} from 'react'
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
 import {Link, useHistory} from "react-router-dom";
 import {motion} from 'framer-motion'
+
+import TextField from '@material-ui/core/TextField';
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 
 export default function SignIn(props){
     const [username, setUsername] = useState('');
@@ -66,7 +68,11 @@ export default function SignIn(props){
 
 
     return (<div>
-        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>Sign In</motion.h2>
+        
+        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>
+            SignIn
+         
+        </motion.h2>
         <form onSubmit={()=>onClickSignIn()} noValidate autoComplete="off">
             <ul>
                 <li>
