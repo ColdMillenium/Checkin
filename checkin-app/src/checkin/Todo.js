@@ -74,7 +74,10 @@ export default function Todo(props) {
                     {Content()}
                 </CardContent>
                 <Button onClick={selectTodo}>Edit</Button>
-                <CheckBox checked={data.completed}></CheckBox>
+                <CheckBox 
+                checked={data.completed}
+                onChange={()=>{}}
+                />
             </Card>  
         // </motion.div>
          

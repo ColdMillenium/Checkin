@@ -80,6 +80,9 @@ export default function TodoList() {
             console.error(err);
         })
     }
+    function completeTodo(data){
+        updateTodo({...data, completed:!data.completed});
+    }
     function handleDelete(id){
         //close Edit Drawer
         setEditOpen(false);
