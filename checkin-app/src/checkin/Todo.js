@@ -11,12 +11,15 @@ import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles({
     root: {
+      height:70,
       maxWidth: 500,
       minWidth: 250,
       marginTop: 10,
       marginBottom:10,
+      boxShadow:4,
     },
     rootSelected: {
+        height: 70,
         maxWidth: 500,
         minWidth: 250,
         marginTop: 10,
@@ -57,8 +60,8 @@ export default function Todo(props) {
         //     drag
         //     dragConstraints={{left:0, top:0, right:0, bottom:0}}
         // >
-            <Card  className={style()}>
-                <CardContent className={classes.text}>
+            <Card boxShadow={3} className={style()}>
+                <CardContent boxShadow={4} className={classes.text}>
                 <Grid container spacing= {2} justify="space-between" alignItems="center">
                     <Grid item>
                         <CheckBox 
