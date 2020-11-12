@@ -60,21 +60,7 @@ export default function TodoList() {
         setEditOpen(false);
         setSelectedId(null);
         if(JSON.stringify(origData) != JSON.stringify(editData)){
-            updateTodo({
-                token: aToken,
-                data:{
-                    name: editData.name,
-                    completed: editData.completed,
-                    _id: editData._id,
-                } 
-            })
-            .then((res)=>{
-                console.log(res);
-                refreshList();
-            })
-            .catch((err)=>{
-                console.error(err);
-            })
+            handleChange(editData);
         }
     }
     function handleChange(data){
