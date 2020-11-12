@@ -121,11 +121,11 @@ export default function TodoList() {
                     const isSelected = (selectedId === todo._id);
                     if(isSelected){
                         return (  
-                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={editData}></Todo>
+                            <Todo completeTodo={completeTodo} key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={editData}></Todo>
                         )
                     }else{
                         return (  
-                            <Todo key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={todo}></Todo>
+                            <Todo completeTodo={completeTodo} key={todo._id} selectTodo={()=>selectTodo(todo)} isSelected={isSelected} data={todo}></Todo>
                         )
                     }
                     

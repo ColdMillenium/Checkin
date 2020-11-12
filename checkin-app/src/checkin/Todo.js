@@ -42,6 +42,7 @@ export default function Todo(props) {
     const data = props.data;
     const selected = props.isSelected;
     const selectTodo = props.selectTodo;
+    const completeTodo = props.completeTodo;
     function style(){
         if(selected){
             return classes.rootSelected;
@@ -76,7 +77,7 @@ export default function Todo(props) {
                 <Button onClick={selectTodo}>Edit</Button>
                 <CheckBox 
                 checked={data.completed}
-                onChange={()=>{}}
+                onChange={()=>{completeTodo(data)}}
                 />
             </Card>  
         // </motion.div>
