@@ -59,7 +59,7 @@ export default function Todo(props) {
         // >
             <Card  className={style()}>
                 <CardContent className={classes.text}>
-                <Grid container spacing= {2}>
+                <Grid container spacing= {2} justify="space-between" alignItems="center">
                     <Grid item>
                         <CheckBox 
                             checked={data.completed}
