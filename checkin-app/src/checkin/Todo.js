@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
+import CheckBox from "@material-ui/core/Checkbox"
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {ReactComponent as DeleteIcon} from '../icons/delete.svg'
@@ -65,16 +65,18 @@ export default function Todo(props) {
     }
 
     return(
-        <motion.div
-            drag
-            dragConstraints={{left:0, top:0, right:0, bottom:0}}
-        >
-            <Card onClick={selectTodo} className={style()}>
+        // <motion.div
+        //     drag
+        //     dragConstraints={{left:0, top:0, right:0, bottom:0}}
+        // >
+            <Card  className={style()}>
                 <CardContent className={classes.text}>
                     {Content()}
                 </CardContent>
+                <Button onClick={selectTodo}>Edit</Button>
+                <CheckBox></CheckBox>
             </Card>  
-        </motion.div>
+        // </motion.div>
          
     )
     
