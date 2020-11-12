@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
 
 export default function SignIn(props){
     const [username, setUsername] = useState('');
@@ -67,26 +68,33 @@ export default function SignIn(props){
     }
 
 
-    return (<div>
-        
-        <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>
-            SignIn
-         
-        </motion.h2>
-        <form onSubmit={()=>onClickSignIn()} noValidate autoComplete="off">
-            <ul>
-                <li>
-                    <TextField onChange= {(e) =>handleTyping("Username", e)} id="standard-basic" label="Login" />
-                </li>
-                <li>
-                    <TextField onKeyPress={(e)=>{handleEnter(e)}} onChange= {(e) =>handleTyping("Password", e)} id="standard-basic" label="Password" />
-                </li> 
-            </ul>
-        </form>
-        <p>{usernameError}</p>
-        <p>{passwordError}</p>
-        <Button variant="contained" onClick={() => onClickSignIn()} color="primary">Sign In</Button>
-        <Button onClick={goToSignUp} variant="contained" color="primary">Make an account</Button>
-    
-    </div>)
+    return (
+        <Grid container direction="column" alignItems="center">
+            <Grid item>
+            <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>
+                SignIn
+            </motion.h2>
+            </Grid>
+            <Grid item>
+                <TextField onChange= {(e) =>handleTyping("Username", e)} id="standard-basic" label="Login" />
+            </Grid>
+            <Grid item>
+                <TextField onKeyPress={(e)=>{handleEnter(e)}} onChange= {(e) =>handleTyping("Password", e)} id="standard-basic" label="Password" />
+            </Grid>
+            <Grid item>
+                <Button variant="contained" onClick={() => onClickSignIn()} color="primary">
+                    Sign In
+                </Button>
+            </Grid>
+            <Grid item>
+                <Button onClick={goToSignUp} variant="contained" color="primary">
+                    Make an account
+                </Button>
+            </Grid>
+            <Grid item>
+                <p>{usernameError}</p>
+                <p>{passwordError}</p>
+            </Grid>
+        </Grid>
+    )
 }
