@@ -3,6 +3,7 @@ import {useStoreState, useStoreActions} from 'easy-peasy'
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import { makeStyles, ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import {grey } from '@material-ui/core/colors/';
 import 'fontsource-roboto'
 
 import Account from './account/Account'
@@ -23,7 +24,9 @@ const theme = createMuiTheme({
         },
         secondary:{
             main:"#b8e994"
-        }
+        },
+     
+
     }
 })
 //------------V----- High Level App Routing ---------------V------//
