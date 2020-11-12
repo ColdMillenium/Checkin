@@ -8,11 +8,11 @@ import Grid from '@material-ui/core/Grid'
 
 const arriveLeft = {
     hidden: { x: "-10vw", opacity: 0},
-    visible: { x: "0vw", opacity:1, transition: { ease: "easeIn", duration: 0.7 } }
+    visible: { x: "0vw", opacity:1, transition: { ease: "easeOut", duration: 0.5 } }
   };
   const arriveRight = {
-    hidden: { x: "40vw", opacity: 0},
-    visible: { x: "0vw", opacity:1, transition: { ease: "easeIn", duration: 0.7 } }
+    hidden: { x: "10vw", opacity: 0},
+    visible: { x: "0vw", opacity:1, transition: { ease: "easeOut", duration: 0.5 } }
   };
 export default function Account() {
     const history = useHistory();

@@ -1,10 +1,13 @@
 import React, {useState, useCallback} from 'react'
-import { Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useStoreActions} from 'easy-peasy'
 import {Link, useHistory} from 'react-router-dom'
 import { motion } from "framer-motion";
+
+import { Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
 
 export default function SignUp(props){
     const [username, setUsername] = useState('');
@@ -62,24 +65,32 @@ export default function SignUp(props){
         return(<Button> variant="contained" onClick={() => onSignUpClick()} color="primary">Sign Up</Button>)
     }
     return (
-        <div>
-            <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>Sign Up</motion.h2>
-            <form  noValidate autoComplete="off">
-                <ul>
-                    <li>
-                        <TextField onChange= {(e) =>handleTyping("Username", e)} id="standard-basic" label="Login" />
-                    </li>
-                    <li>
-                        <TextField onChange= {(e) =>handleTyping("Email", e)} id="standard-basic" label="Email" />
-                    </li>
-                    <li>
-                        <TextField onChange= {(e) =>handleTyping("Pasasdfadsword", e)} id="standard-basic" label="Password" />
-                    </li> 
-                </ul>
-            </form>
-            <Button variant="contained" onClick={() => onSignUpClick()} color="primary">Sign Up</Button>
-            <Button onClick={goToSignIn} variant="contained"  color="primary">Back to Sign In</Button>
-        </div>
+        <Grid container direction="column" alignItems="center">
+            <Grid item>
+                <Typography variant="h4">
+                    Sign Up
+                </Typography>
+            </Grid>
+            <Grid item>
+                <TextField onChange= {(e) =>handleTyping("Username", e)} id="standard-basic" label="Login" />
+            </Grid>
+            <Grid item>
+                <TextField onChange= {(e) =>handleTyping("Email", e)} id="standard-basic" label="Email" /> 
+            </Grid>
+            <Grid item>
+                <TextField onChange= {(e) =>handleTyping("Pasasdfadsword", e)} id="standard-basic" label="Password" />
+            </Grid>
+            <Grid item>
+                <Button variant="contained" onClick={() => onSignUpClick()} color="primary">
+                    Sign Up
+                </Button>
+            </Grid>
+            <Grid item>
+                <Button onClick={goToSignIn} variant="contained"  color="primary">
+                    Back to Sign In
+                </Button>
+            </Grid>   
+        </Grid>
     )
     }
 

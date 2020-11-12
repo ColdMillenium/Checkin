@@ -71,9 +71,9 @@ export default function SignIn(props){
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
-            <motion.h2 animate={{fontSize:"40px"}} transition={{ duration: 1, type: "spring", delay:0.5 }}>
-                SignIn
-            </motion.h2>
+            <Typography variant="h4">
+                Sign In
+            </Typography>
             </Grid>
             <Grid item>
                 <TextField onChange= {(e) =>handleTyping("Username", e)} id="standard-basic" label="Login" />
